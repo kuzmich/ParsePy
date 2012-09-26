@@ -209,6 +209,14 @@ class ParseQuery(ParseBase):
         self._where[name]['$ne'] = value
         return self
 
+    def in_(self, name, values):
+        self._where[name]['$in'] = values
+        return self
+
+    def nin(self, name, values):
+        self._where[name]['$nin'] = values
+        return self
+
     def order(self, order, decending=False):
         # add a minus sign before the order value if decending == True
         self._options['order'] = decending and ('-' + order) or order
